@@ -21,8 +21,8 @@ const Home = () => {
         <div className="md:col-span-2">
           <h2 className="text-xl font-semibold">Dragon News Home</h2>
           <div className="space-y-6">
-            {news.map(n => (
-              <HomeMiddleCard key={n.id} n={n}></HomeMiddleCard>
+            {news.map((n, idx) => (
+              <HomeMiddleCard key={idx} n={n}></HomeMiddleCard>
             ))}
           </div>
         </div>

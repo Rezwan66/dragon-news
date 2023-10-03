@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
     });
-    return unSubscribe();
+    return () => unSubscribe();
   }, []);
 
   //   create user
