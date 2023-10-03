@@ -1,19 +1,25 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
+import { useContext } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
   const handleLogin = e => {
     e.preventDefault();
     // const email = e.target.email.value;
     // const password = e.target.password.value;
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
-    console.log(form.get('email'));
-    console.log(form.get('password'));
+    const email = form.get('email');
+    const password = form.get('password');
+    loginUser(email, password)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-6">
       <Navbar></Navbar>
       <div className="bg-[#F3F3F3] mt-24 md:w-3/4 lg:w-1/2 p-20 mx-auto rounded-md">
         <h2 className="text-4xl font-semibold text-center">Please Login</h2>
