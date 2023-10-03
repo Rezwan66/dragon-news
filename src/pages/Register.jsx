@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
 
-const Login = () => {
-  const handleLogin = e => {
+const Register = () => {
+  const handleRegister = e => {
     e.preventDefault();
     // const email = e.target.email.value;
     // const password = e.target.password.value;
@@ -13,12 +13,38 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div>
       <Navbar></Navbar>
-      <div className="bg-[#F3F3F3] mt-24 md:w-3/4 lg:w-1/2 p-20 mx-auto rounded-md">
-        <h2 className="text-4xl font-semibold text-center">Please Login</h2>
+      <div className="bg-[#F3F3F3] mt-10 md:w-3/4 lg:w-1/2 p-20 mx-auto rounded-md">
+        <h2 className="text-4xl font-semibold text-center">
+          Register your account
+        </h2>
         <hr className="my-6" />
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your name"
+              name="name"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your profile photo link"
+              name="photo"
+              className="input input-bordered"
+              required
+            />
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email address</span>
@@ -42,22 +68,26 @@ const Login = () => {
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
+            <label className="label justify-start gap-2 mt-2">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-neutral"
+                name=""
+                id=""
+              />{' '}
+              <span>Accept Term & Conditions</span>
             </label>
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-neutral bg-[#403F3F] text-white capitalize">
-              Login
+              Register
             </button>
           </div>
           <label className="label mt-6">
             <span className="mx-auto text-[#706F6F] font-semibold">
-              Dont’t Have An Account ?{' '}
-              <Link className="text-[#F75B5F]" to="/register">
-                Register
+              Already Have An Account ?{' '}
+              <Link className="text-[#F75B5F]" to="/login">
+                Login
               </Link>
             </span>
           </label>
@@ -67,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
