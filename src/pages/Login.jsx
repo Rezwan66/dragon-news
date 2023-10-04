@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -13,9 +14,14 @@ const Login = () => {
     const form = new FormData(e.currentTarget);
     const email = form.get('email');
     const password = form.get('password');
+    // reset the form
+    e.currentTarget.reset();
     loginUser(email, password)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        console.log(res.user);
+        toast.success('Signed In Successfully');
+      })
+      .catch(err => toast.error(err.message));
   };
 
   return (

@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import auth from '../firebase/firebase.console';
 
@@ -30,6 +31,13 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  //   update user name and photoUrl
+  const updateUser = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
   //   sign in with email and password
   const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -38,6 +46,7 @@ const AuthProvider = ({ children }) => {
   const logoutUser = () => {
     return signOut(auth);
   };
+
   //   sign in with Google
   const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
@@ -49,6 +58,7 @@ const AuthProvider = ({ children }) => {
   const authentications = {
     user,
     createUser,
+    updateUser,
     loginUser,
     logoutUser,
     googleLogin,

@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
   const handleRegister = e => {
     e.preventDefault();
     // console.log(e.currentTarget);
@@ -14,9 +15,18 @@ const Register = () => {
     const email = form.get('email');
     const password = form.get('password');
     // console.log(name, photo, email, password);
+    // reset the form
+    e.currentTarget.reset();
     createUser(email, password)
-      .then(res => console.log(res.user))
-      .catch(err => console.log(err));
+      .then(res => {
+        console.log(res.user);
+        updateUser(name, photo)
+          .then(() => {
+            toast.success('Created User Successfully');
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => toast.error(err.message));
   };
 
   return (

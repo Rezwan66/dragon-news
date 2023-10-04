@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import userDefaultAvatar from '../../assets/user.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser()
-      .then(() => console.log('sign out successful'))
+      .then(() => toast.success('sign out successful'))
       .catch(err => console.log(err));
   };
 
@@ -59,7 +60,7 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <img src={userDefaultAvatar} />
+            <img src={user ? user.photoURL : userDefaultAvatar} />
           </div>
         </label>
         {user ? (

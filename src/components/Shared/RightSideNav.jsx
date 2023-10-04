@@ -9,19 +9,33 @@ import {
 import qZone1 from '../../assets/qZone1.png';
 import qZone2 from '../../assets/qZone2.png';
 import qZone3 from '../../assets/qZone3.png';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const RightSideNav = () => {
+  const { googleLogin, githubLogin } = useContext(AuthContext);
+  const handleSocialLogin = media => {
+    media()
+      .then(res => console.log(res.user))
+      .catch(err => console.log(err));
+  };
   return (
     <div>
       {/* login with */}
       <div className="space-y-3 mb-8">
         <h2 className="text-xl font-bold">Login With</h2>
 
-        <button className="btn btn-outline btn-info w-full text-base normal-case">
+        <button
+          onClick={() => handleSocialLogin(googleLogin)}
+          className="btn btn-outline btn-info w-full text-base normal-case"
+        >
           <FaGoogle></FaGoogle>
           Login with Google
         </button>
-        <button className="btn btn-outline btn-neutral w-full text-base normal-case">
+        <button
+          onClick={() => handleSocialLogin(githubLogin)}
+          className="btn btn-outline btn-neutral w-full text-base normal-case"
+        >
           <FaGithub></FaGithub>
           Login with GitHub
         </button>
