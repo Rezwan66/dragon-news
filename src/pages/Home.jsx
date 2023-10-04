@@ -19,10 +19,10 @@ const Home = () => {
           <LeftSideNav></LeftSideNav>
         </div>
         <div className="md:col-span-2">
-          <h2 className="text-xl font-semibold">Dragon News Home</h2>
+          <h2 className="text-xl font-semibold mb-3">Dragon News Home</h2>
           <div className="space-y-6">
-            {news.map((n, idx) => (
-              <HomeMiddleCard key={idx} n={n}></HomeMiddleCard>
+            {news.map(n => (
+              <HomeMiddleCard key={n._id} n={n}></HomeMiddleCard>
             ))}
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { FaBookmark, FaEye, FaShareAlt } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const HomeMiddleCard = ({ n }) => {
-  const { author, title, image_url, details, rating, total_view } = n;
+  const { _id, author, title, image_url, details, rating, total_view } = n;
   return (
     <div>
       <div className="rounded overflow-hidden border bg-white">
@@ -26,7 +27,16 @@ const HomeMiddleCard = ({ n }) => {
           <h2 className="text-xl font-bold mt-4">{title}</h2>
           <img className="w-full bg-cover" src={image_url} />
           <div>
-            <p className="mb-4">{details}</p>
+            {details.length > 200 ? (
+              <p className="mb-4">
+                {details.slice(0, 200)}{' '}
+                <Link to={`/news/${_id}`} className="text-[#FF8C47]">
+                  ...read more
+                </Link>
+              </p>
+            ) : (
+              <p className="mb-4">{details}</p>
+            )}
             <hr />
             <div className="flex justify-between my-4">
               <span>{rating?.number}</span>
