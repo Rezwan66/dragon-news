@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Shared/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = e => {
     e.preventDefault();
     // console.log(e.currentTarget);
@@ -25,6 +26,7 @@ const Register = () => {
             toast.success('Created User Successfully');
           })
           .catch(err => console.log(err));
+        navigate('/');
       })
       .catch(err => toast.error(err.message));
   };
